@@ -64,7 +64,9 @@ class FaqTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return faqs[section].isOpen ? 2 : 1
+        let openRowCount = 2
+        let closedRowCount = 1
+        return faqs[section].isOpen ? openRowCount : closedRowCount
     }
     
     // MARK: - Cell for Row
@@ -72,7 +74,7 @@ class FaqTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // MARK: - Question
-        if indexPath.row == 0 {
+        if indexPath.row == questionRow {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: questionIdentifier) as? QuestionTVCell else {
                 return UITableViewCell()
             }
@@ -83,7 +85,7 @@ class FaqTVC: UITableViewController {
         }
         
         // MARK: - Answer
-        else if indexPath.row == 1 {
+        else if indexPath.row == answerRow {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: answerIdentifier) as? AnswerTVCell else {
                 return UITableViewCell()
             }
